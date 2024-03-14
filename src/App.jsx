@@ -13,7 +13,7 @@ function App() {
 
 function Heading() {
   return (
-    <div className="mx-auto mb-10 max-w-min pt-10 sm:pt-20">
+    <div className="mx-auto mb-4 max-w-min pt-4 sm:mb-10  sm:pt-20">
       <h1 className="text-3xl font-bold uppercase tracking-[0.85rem] text-cyan-900 ">
         Spli
       </h1>
@@ -26,7 +26,7 @@ function Heading() {
 
 function Container({ children }) {
   return (
-    <div className="flex flex-1 flex-col rounded-xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row">
+    <div className="flex flex-1 flex-col rounded-3xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row">
       {children}
     </div>
   );
@@ -36,27 +36,29 @@ function LeftSide() {
   return (
     <div className="h-2/3 w-full px-4 py-2 sm:w-1/2">
       <p className="mb-2 text-2xl font-bold text-gray-600">Bill</p>
-      <input type="text" className="h-14 w-full bg-gray-100 sm:h-6" />
-      <p className="my-2 text-2xl font-bold text-gray-600">Select Tip %</p>
+      <input type="text" className="h-12 w-full bg-gray-100 sm:h-6" />
+      <p className="my-4 text-2xl font-bold text-gray-600">Select Tip %</p>
       <div className="flex flex-wrap gap-x-6 gap-y-4 sm:gap-2">
         <TipButton percent={5} />
         <TipButton percent={10} />
         <TipButton percent={15} />
         <TipButton percent={25} />
         <TipButton percent={50} />
-        <button className="h-16 w-40 bg-gray-100 text-3xl font-bold text-gray-600 sm:w-20 sm:rounded-sm">
+        <button className="h-12 w-32 rounded-lg bg-gray-100 text-3xl font-bold text-gray-600 sm:w-20 sm:rounded-sm">
           Custom
         </button>
       </div>
-      <p className=" my-2 text-2xl font-bold text-gray-600">Number of People</p>
-      <input type="text" className="h-14 w-full bg-gray-100" />
+      <p className=" mb-2 mt-4 text-2xl font-bold text-gray-600">
+        Number of People
+      </p>
+      <input type="text" className="mb-6 h-12 w-full bg-gray-100" />
     </div>
   );
 }
 
 function TipButton({ percent }) {
   return (
-    <button className="h-16 w-40 rounded-lg bg-cyan-900 text-3xl  font-bold text-cyan-50 sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-sm">
+    <button className="h-12 w-32 rounded-lg bg-cyan-900 text-3xl  font-bold text-cyan-50 sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-sm">
       {percent}%
     </button>
   );
@@ -64,7 +66,7 @@ function TipButton({ percent }) {
 
 function RightSide() {
   return (
-    <div className="w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:w-1/2 sm:p-4">
+    <div className="mb-6 w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:w-1/2 sm:p-4">
       <div className="mb-4 flex justify-between space-x-6">
         <div className="flex-col leading-none">
           <p className="text-2xl font-bold text-cyan-50">Tip Amount</p>
