@@ -36,29 +36,32 @@ function LeftSide() {
   return (
     <div className="h-2/3 w-full px-4 py-2 sm:w-1/2">
       <p className="mb-2 text-2xl font-bold text-gray-600">Bill</p>
-      <input type="text" className="h-12 w-full bg-gray-100 sm:h-6" />
+      <input type="text" className="h-12 w-full bg-gray-100 sm:h-10 sm:w-64" />
       <p className="my-4 text-2xl font-bold text-gray-600">Select Tip %</p>
-      <div className="flex flex-wrap gap-x-6 gap-y-4 sm:gap-2">
+      <div className="mx-auto flex w-72 flex-wrap gap-x-6 gap-y-4 sm:gap-2">
         <TipButton percent={5} />
         <TipButton percent={10} />
         <TipButton percent={15} />
         <TipButton percent={25} />
         <TipButton percent={50} />
-        <button className="h-12 w-32 rounded-lg bg-gray-100 text-3xl font-bold text-gray-600 sm:w-20 sm:rounded-sm">
+        <button className="h-12 w-32 rounded-lg bg-gray-100 text-3xl font-bold text-gray-600 sm:h-10 sm:w-20 sm:rounded-sm sm:text-xl">
           Custom
         </button>
       </div>
-      <p className=" mb-2 mt-4 text-2xl font-bold text-gray-600">
+      <p className=" mb-2 mt-4 text-2xl font-bold text-gray-600 ">
         Number of People
       </p>
-      <input type="text" className="mb-6 h-12 w-full bg-gray-100" />
+      <input
+        type="text"
+        className="mb-6 h-12 w-full bg-gray-100 sm:h-10 sm:w-64"
+      />
     </div>
   );
 }
 
 function TipButton({ percent }) {
   return (
-    <button className="h-12 w-32 rounded-lg bg-cyan-900 text-3xl  font-bold text-cyan-50 sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-sm">
+    <button className="h-12 w-32 rounded-lg bg-cyan-900 text-3xl  font-bold text-cyan-50 sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-xl">
       {percent}%
     </button>
   );
@@ -66,7 +69,7 @@ function TipButton({ percent }) {
 
 function RightSide() {
   return (
-    <div className="mb-6 w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:w-1/2 sm:p-4">
+    <div className="mb-6 w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:my-2 sm:mr-2 sm:w-1/2 sm:p-4">
       <div className="mb-4 flex justify-between space-x-6">
         <div className="flex-col leading-none">
           <p className="text-2xl font-bold text-cyan-50">Tip Amount</p>
@@ -82,7 +85,7 @@ function RightSide() {
         <p className="text-5xl font-bold text-emerald-500 sm:text-3xl">0.00$</p>
       </div>
 
-      <button className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 sm:py-1 sm:text-lg">
+      <button className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 sm:mt-[116px] sm:py-2 sm:text-2xl">
         Reset
       </button>
     </div>
