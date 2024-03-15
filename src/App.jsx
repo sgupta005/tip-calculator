@@ -53,7 +53,7 @@ function Heading() {
 
 function Container({ children }) {
   return (
-    <div className="flex flex-1 flex-col gap-6 rounded-3xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row sm:gap-4">
+    <div className="flex flex-1 flex-col gap-8 rounded-3xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row sm:gap-2">
       {children}
     </div>
   );
