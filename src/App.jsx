@@ -35,6 +35,7 @@ function App() {
           onSetBill={handleSetBill}
           onSetPeople={handleSetPeople}
           onSetTip={handleSetTip}
+          tipPerc={tipPerc}
         />
         <RightSide
           tipAmountPerPerson={tipAmountPerPerson}
@@ -67,18 +68,18 @@ function Container({ children }) {
   );
 }
 
-function LeftSide({ bill, people, onSetBill, onSetPeople, onSetTip }) {
+function LeftSide({ bill, people, onSetBill, onSetPeople, onSetTip, tipPerc }) {
   return (
     <div className="h-2/3 w-full px-4 py-2 sm:w-1/2">
       <p className="mb-2 text-2xl font-bold text-gray-600">Bill</p>
       <Input value={bill} setValue={onSetBill} />
       <p className="my-4 text-2xl font-bold text-gray-600">Select Tip %</p>
       <div className="mx-auto flex w-72 flex-wrap gap-x-6 gap-y-4 sm:gap-2">
-        <TipButton percent={5} onSetTip={onSetTip} />
-        <TipButton percent={10} onSetTip={onSetTip} />
-        <TipButton percent={15} onSetTip={onSetTip} />
-        <TipButton percent={25} onSetTip={onSetTip} />
-        <TipButton percent={50} onSetTip={onSetTip} />
+        <TipButton percent={5} onSetTip={onSetTip} tipPerc={tipPerc} />
+        <TipButton percent={10} onSetTip={onSetTip} tipPerc={tipPerc} />
+        <TipButton percent={15} onSetTip={onSetTip} tipPerc={tipPerc} />
+        <TipButton percent={25} onSetTip={onSetTip} tipPerc={tipPerc} />
+        <TipButton percent={50} onSetTip={onSetTip} tipPerc={tipPerc} />
         <button className="h-12 w-32 rounded-lg bg-gray-100 text-3xl font-bold text-gray-600 sm:h-10 sm:w-20 sm:rounded-sm sm:text-xl">
           Custom
         </button>
@@ -91,12 +92,13 @@ function LeftSide({ bill, people, onSetBill, onSetPeople, onSetTip }) {
   );
 }
 
-function TipButton({ percent, onSetTip }) {
+function TipButton({ percent, onSetTip, tipPerc }) {
+  let style =
+    percent === tipPerc
+      ? "h-12 w-32 rounded-lg bg-emerald-500 text-3xl font-bold text-cyan-900  sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-xl"
+      : "hover:bg-cyan-800 h-12 w-32 rounded-lg bg-cyan-900 text-3xl font-bold text-cyan-50  sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-xl";
   return (
-    <button
-      className="h-12 w-32 rounded-lg bg-cyan-900 text-3xl  font-bold text-cyan-50 sm:h-10 sm:w-20 sm:rounded-sm sm:px-6 sm:py-1 sm:text-xl"
-      onClick={() => onSetTip(+percent)}
-    >
+    <button className={style} onClick={() => onSetTip(+percent)}>
       {percent}%
     </button>
   );
@@ -141,7 +143,7 @@ function RightSide({ billPerPerson, tipAmountPerPerson, onReset }) {
       </div>
 
       <button
-        className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 sm:mt-[116px] sm:py-2 sm:text-2xl"
+        className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 hover:bg-emerald-400 sm:mt-[116px] sm:py-2 sm:text-2xl"
         onClick={onReset}
       >
         Reset
