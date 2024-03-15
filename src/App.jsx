@@ -19,12 +19,19 @@ function App() {
   function handleSetTip(tip) {
     setTipPerc(tip);
   }
+  function handleReset() {
+    setBill(0);
+    setTipPerc(0);
+    setPeople(0);
+  }
 
   return (
     <div className="flex h-screen flex-col bg-cyan-300">
       <Heading />
       <Container>
         <LeftSide
+          bill={bill}
+          people={people}
           onSetBill={handleSetBill}
           onSetPeople={handleSetPeople}
           onSetTip={handleSetTip}
@@ -32,6 +39,7 @@ function App() {
         <RightSide
           tipAmountPerPerson={tipAmountPerPerson}
           billPerPerson={billPerPerson}
+          onReset={handleReset}
         />
       </Container>
     </div>
@@ -53,17 +61,17 @@ function Heading() {
 
 function Container({ children }) {
   return (
-    <div className="flex flex-1 flex-col gap-8 rounded-3xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row sm:gap-2">
+    <div className="flex flex-1 flex-col gap-8 rounded-3xl bg-white p-4 sm:mx-auto sm:flex sm:h-96 sm:max-w-[700px] sm:flex-none sm:flex-row sm:gap-0">
       {children}
     </div>
   );
 }
 
-function LeftSide({ onSetBill, onSetPeople, onSetTip }) {
+function LeftSide({ bill, people, onSetBill, onSetPeople, onSetTip }) {
   return (
     <div className="h-2/3 w-full px-4 py-2 sm:w-1/2">
       <p className="mb-2 text-2xl font-bold text-gray-600">Bill</p>
-      <Input stateSetter={onSetBill} />
+      <Input value={bill} setValue={onSetBill} />
       <p className="my-4 text-2xl font-bold text-gray-600">Select Tip %</p>
       <div className="mx-auto flex w-72 flex-wrap gap-x-6 gap-y-4 sm:gap-2">
         <TipButton percent={5} onSetTip={onSetTip} />
@@ -78,7 +86,7 @@ function LeftSide({ onSetBill, onSetPeople, onSetTip }) {
       <p className=" mb-2 mt-4 text-2xl font-bold text-gray-600 ">
         Number of People
       </p>
-      <Input stateSetter={onSetPeople} />
+      <Input value={people} setValue={onSetPeople} />
     </div>
   );
 }
@@ -94,11 +102,11 @@ function TipButton({ percent, onSetTip }) {
   );
 }
 
-function Input({ stateSetter }) {
-  const [value, setValue] = useState(0);
+function Input({ value, setValue }) {
+  // const [value, setValue] = useState(0);
   function handleSetValue(e) {
     setValue(+e.target.value);
-    stateSetter(+e.target.value);
+    // stateSetter(+e.target.value);
   }
   return (
     <input
@@ -110,16 +118,16 @@ function Input({ stateSetter }) {
   );
 }
 
-function RightSide({ billPerPerson, tipAmountPerPerson }) {
+function RightSide({ billPerPerson, tipAmountPerPerson, onReset }) {
   return (
-    <div className="mb-6 w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:my-2 sm:mr-2 sm:w-1/2 sm:p-4">
+    <div className="mb-6 w-full flex-1 rounded-lg bg-cyan-900 p-4 sm:my-2 sm:mr-2 sm:w-1/2 sm:min-w-80 sm:px-6 sm:py-4">
       <div className="mb-4 flex justify-between space-x-6">
         <div className="flex-col leading-none">
           <p className="text-2xl font-bold text-cyan-50">Tip Amount</p>
           <p className="text-xl text-cyan-100">/person</p>
         </div>
         <p className="text-5xl font-bold text-emerald-500 sm:text-3xl">
-          &#8377;{tipAmountPerPerson.toFixed(2)}
+          &#8377;{tipAmountPerPerson}
         </p>
       </div>
       <div className="flex justify-between">
@@ -128,11 +136,14 @@ function RightSide({ billPerPerson, tipAmountPerPerson }) {
           <p className="text-xl text-cyan-100">/person</p>
         </div>
         <p className="text-5xl font-bold text-emerald-500 sm:text-3xl">
-          &#8377;{billPerPerson.toFixed(2)}
+          &#8377;{billPerPerson}
         </p>
       </div>
 
-      <button className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 sm:mt-[116px] sm:py-2 sm:text-2xl">
+      <button
+        className="mt-4 w-full rounded-md bg-emerald-500 py-2 text-3xl font-bold uppercase text-cyan-900 sm:mt-[116px] sm:py-2 sm:text-2xl"
+        onClick={onReset}
+      >
         Reset
       </button>
     </div>
