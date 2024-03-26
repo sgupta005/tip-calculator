@@ -1,4 +1,4 @@
-#Live Demo
+# Live Demo
 https://tip-calculator2024.netlify.app/
 
 
